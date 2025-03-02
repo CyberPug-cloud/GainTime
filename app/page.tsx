@@ -1,12 +1,21 @@
+"use client"
+
 import Image from "next/image"
-import { Github, Mail, HelpCircle, FileText } from "lucide-react"
+import { Github, HelpCircle, FileText } from "lucide-react"
+import { useEffect } from "react"
+import emailjs from "@emailjs/browser"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { ContactForm } from "@/components/ContactForm"
 
 export default function SupportPage() {
+  useEffect(() => {
+    emailjs.init("CyberPug-cloud") // Initialize with user ID
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#E6FFFD] to-[#40CFC8] dark:from-[#134E4C] dark:to-[#0A2827]">
       <header className="bg-white/95 backdrop-blur-sm dark:bg-gray-950/95 shadow-sm">
@@ -68,16 +77,56 @@ export default function SupportPage() {
                   <AccordionItem value="item-1">
                     <AccordionTrigger>How do I add a new habit?</AccordionTrigger>
                     <AccordionContent>
-                      To add a new habit, tap the "Add" button on the main screen. Fill in the habit details including
-                      title, description, priority, and frequency. You can also set goals for your habit.
+                      <p className="mb-4">
+                        To add a new habit, tap the "Add" button on the main screen. Fill in the habit details including
+                        title, description, priority, and frequency. You can also set goals for your habit.
+                      </p>
+                      <div className="mt-4 flex flex-col md:flex-row justify-center items-center gap-4">
+                        <div className="w-full md:w-1/2 flex flex-col items-center">
+                          <Image
+                            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Add%20First%20Habit%20-%20light-YRDhRtvCYAA8v4MvYFwzivdtWtiPvB.png"
+                            alt="Add First Habit Screen"
+                            width={300}
+                            height={600}
+                            className="rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
+                          />
+                          <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-400">
+                            Add Your First Habit
+                          </p>
+                        </div>
+                        <div className="w-full md:w-1/2 flex flex-col items-center">
+                          <Image
+                            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/New%20Habit%20-%20light-hE5S4vCEHGuzh3CsdPwyAArbDLMFHK.png"
+                            alt="New Habit Details Screen"
+                            width={300}
+                            height={600}
+                            className="rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
+                          />
+                          <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-400">New Habit Details</p>
+                        </div>
+                      </div>
                     </AccordionContent>
                   </AccordionItem>
 
                   <AccordionItem value="item-2">
                     <AccordionTrigger>Can I change the language of the app?</AccordionTrigger>
                     <AccordionContent>
-                      Yes! GainTime supports multiple languages including English, French, German, Polish, Spanish, and
-                      Italian. You can change the language in the Settings menu under "Language".
+                      <p className="mb-4">
+                        Yes! GainTime supports multiple languages including English, French, German, Polish, Spanish,
+                        and Italian. You can change the language in the Settings menu under "Language".
+                      </p>
+                      <div className="mt-4 flex justify-center">
+                        <div className="w-full max-w-sm flex flex-col items-center">
+                          <Image
+                            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Settings%20-%20light-BnxtuJZN9u38F7Roi9JcrNAtBDUyd5.png"
+                            alt="Settings Screen - Language Selection"
+                            width={300}
+                            height={600}
+                            className="rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
+                          />
+                          <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-400">Language Settings</p>
+                        </div>
+                      </div>
                     </AccordionContent>
                   </AccordionItem>
 
@@ -109,18 +158,12 @@ export default function SupportPage() {
                       <CardDescription>Get in touch with our support team</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <div className="flex items-center gap-2">
-                        <Mail className="h-5 w-5 text-[#40CFC8]" />
-                        <span>support@gaintime-app.com</span>
-                      </div>
-                      <p className="mt-4 text-sm text-muted-foreground">
+                      <p className="mb-4 text-sm text-muted-foreground">
                         We typically respond within 24-48 hours on business days.
                       </p>
                     </CardContent>
                     <CardFooter>
-                      <Button className="w-full bg-[#40CFC8] hover:bg-[#3BB8B2]">
-                        <Mail className="mr-2 h-4 w-4" /> Send Email
-                      </Button>
+                      <ContactForm />
                     </CardFooter>
                   </Card>
                 </div>
